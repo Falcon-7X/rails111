@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      redirect_to groups_path
+      redirect_to groups_path, notice: 'Create Succes!'
     else
       render :new
     end
@@ -17,6 +17,19 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+  end
+
+  def edit
+    @group = Group.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    if @group.update(group_params)
+      redirect_to groups_path, notice: 'Update Success!'
+    else
+      render :edit
+    end
   end
 
   private
