@@ -18,6 +18,25 @@ class PostsController < ApplicationController
     end
   end
 
+
+  def edit
+    @group = Group.find(params[:group_id])
+    @post = Post.find[:id]
+  end
+
+  def update
+    @group = Group.find(params[:group_id])
+    @post = Post.update(parmas[:id])
+    @post.group = @group
+    @post.user = current_user
+
+    if @post.save
+      redirect_to group(@group)
+    else
+      render edit
+    end
+  end
+
   private
 
   def post_params
