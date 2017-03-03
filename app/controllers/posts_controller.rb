@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+
   def new
     @group = Group.find(params[:group_id])
     @post = Post.new
@@ -15,25 +16,6 @@ class PostsController < ApplicationController
       redirect_to group_path(@group)
     else
       render :new
-    end
-  end
-
-
-  def edit
-    @group = Group.find(params[:group_id])
-    @post = Post.find[:id]
-  end
-
-  def update
-    @group = Group.find(params[:group_id])
-    @post = Post.update(parmas[:id])
-    @post.group = @group
-    @post.user = current_user
-
-    if @post.save
-      redirect_to group(@group)
-    else
-      render edit
     end
   end
 
