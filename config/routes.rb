@@ -5,5 +5,9 @@ Rails.application.routes.draw do
   mount RuCaptcha::Engine => "/rucaptcha"
   resources :groups do
     resources :posts
+    member do
+      post :join
+      post :quit
+    end
   end
 end
